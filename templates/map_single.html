@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IP Geolocation Map - {{ ip }}</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      background-color: #0e1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+      color: #ffffff;
+    }
+
+    #map {
+      height: 80vh;
+      width: 90%;
+      margin: auto;
+      border: 2px solid #30363d;
+      border-radius: 8px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px 0;
+      color: #58a6ff;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌍 Geolocation Map for <code>{{ ip }}</code></h1>
+  <div id="map"></div>
+  <a href="/" class="back-link">← Back to Dashboard</a>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const location = {{ location | tojson }};
+    const map = L.map('map').setView([location.latitude, location.longitude], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const marker = L.marker([location.latitude, location.longitude]).addTo(map)
+      .bindPopup(`<b>{{ ip }}</b><br>Location: ${location.city || 'N/A'}, ${location.country || 'N/A'}`)
+      .openPopup();
+  </script>
+</body>
+</html>
