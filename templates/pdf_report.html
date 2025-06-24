@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IOC Threat Intelligence Report</title>
+  <style>
+     .section {
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: #000;
+      padding: 30px;
+    }
+    h1, h2, h3 {
+      color: #222;
+    }
+    .section {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+    .summary-box {
+      background: #f7f7f7;
+      border-left: 6px solid #e74c3c;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .summary-box strong {
+      color: #c0392b;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .grid-item {
+      flex: 1 1 45%;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      overflow-x: auto;
+      border: 1px solid #ccc;
+    }
+    .small {
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>IOC Threat Intelligence Report</h1>
+
+  <p><strong>Generated On:</strong> {{ now.strftime('%Y-%m-%d %H:%M:%S UTC') }}</p>
+
+  <!-- Summary Box -->
+  <div class="summary-box">
+    <h3>🚨 IOC Summary</h3>
+    <p><strong>IOC:</strong> {{ result.ioc }}</p>
+    <p><strong>Tag:</strong> {{ result.tag }}</p>
+    <p><strong>Community Score:</strong> {{ result.summary.community_score }}</p>
+    <p><strong>Last Analysis:</strong> {{ result.summary.last_analysis_date }}</p>
+  </div>
+
+  <!-- VirusTotal Section -->
+  <div class="section">
+    <h3>🧪 VirusTotal Report</h3>
+    <p><strong>Vendors Flagged:</strong> {{ result.summary.vendor_count }} / {{ result.summary.total_vendors }}</p>
+    <p><strong>Registrar / ASN:</strong> {{ result.summary.asn }}</p>
+    <p><strong>Country:</strong> {{ result.summary.country }}</p>
+    <p><strong>Created:</strong> {{ result.summary.domain_creation or 'N/A' }}</p>
+  </div>
+
+  <!-- AbuseIPDB Section -->
+  {% if result.abuse and result.abuse.data %}
+  <div class="section" style="page-break-inside: avoid;">
+    <h3>⚠️ AbuseIPDB Report</h3>
+    <p><strong>Confidence Score:</strong> {{ result.abuse.data.abuseConfidenceScore }}</p>
+    <p><strong>Total Reports:</strong> {{ result.abuse.data.totalReports }}</p>
+    <p><strong>ISP:</strong> {{ result.abuse.data.isp }}</p>
+    <p><strong>Domain:</strong> {{ result.abuse.data.domain }}</p>
+    <p><strong>Usage Type:</strong> {{ result.abuse.data.usageType }}</p>
+  </div>
+  {% endif %}
+
+  <!-- Basic Properties -->
+  <div class="section">
+    <h3>🛠 Basic Properties</h3>
+    <p><strong>Network:</strong> {{ result.summary.network or 'N/A' }}</p>
+    <p><strong>ASN Owner:</strong> {{ result.summary.as_owner or 'N/A' }}</p>
+    <p><strong>Country:</strong> {{ result.summary.country or 'N/A' }}</p>
+    <p><strong>Continent:</strong> {{ result.summary.continent or 'N/A' }}</p>
+  </div>
+
+  <!-- Whois Lookup -->
+  {% if result.summary.whois %}
+  <div class="section">
+    <h3>📜 Whois Lookup</h3>
+    <pre>{{ result.summary.whois }}</pre>
+  </div>
+  {% endif %}
+
+</body>
+</html>

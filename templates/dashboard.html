@@ -1,4 +1,3 @@
-<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,105 +10,157 @@
       color: #c9d1d9;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
-    h1, h2 {
+    h1, h2, h4 {
       font-weight: 600;
       color: #ffffff;
     }
-
     .form-section {
       background-color: #161b22;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-
     .form-control {
       background-color: #0d1117;
       color: #c9d1d9;
       border: 1px solid #30363d;
     }
-
+    .form-control::placeholder {
+      color: #8b949e;
+    }
     .btn-primary {
       background-color: #238636;
       border-color: #2ea043;
     }
-
-    .table-responsive {
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .table {
-      background-color: #0d1117;
+    .btn-secondary {
+      background-color: #2d333b;
+      border: none;
       color: #c9d1d9;
     }
-
-    .table thead {
-      background-color: #1a1f2a;
-      color: #ffffff;
-    }
-
-    .table-striped tbody tr:nth-of-type(odd) {
+    .table {
+      color: #c9d1d9;
       background-color: #161b22;
     }
-
-    .table-striped tbody tr:nth-of-type(even) {
-      background-color: #1c1f26;
+    .table th {
+      background-color: #21262d;
+      color: #ffffff;
     }
-
-    .table-hover tbody tr:hover {
-      background-color: #2c313a;
-      transition: background-color 0.3s ease;
+    .table-bordered th, .table-bordered td {
+      border: 1px solid #30363d;
     }
-
-    .badge {
-      font-size: 0.75rem;
-      padding: 6px 10px;
-      border-radius: 10px;
-      font-weight: 600;
+    .badge.bg-light {
+      background-color: #30363d !important;
+      color: #e6edf3 !important;
     }
-
-    .badge.bg-none {
-      background-color: #444c56;
-      color: #ced4da;
+    .badge-danger {
+      background-color: #da3633;
     }
-
-    .badge.bg-low {
-      background-color: #2ea043;
-    }
-
-    .badge.bg-medium {
+    .badge-warning {
       background-color: #e3b341;
       color: #0e1117;
     }
-
-    .badge.bg-high {
-      background-color: #da3633;
+    .badge-info {
+      background-color: #58a6ff;
+      color: #0e1117;
     }
-
-    .badge.bg-tag {
-      background-color: #586069;
+    .badge-success {
+      background-color: #2ea043;
     }
-
     code {
       background-color: #21262d;
       color: #f0f6fc;
-      padding: 3px 6px;
-      border-radius: 5px;
+      padding: 2px 6px;
+      border-radius: 4px;
     }
-
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #0e1117;
+    }
+    .table-striped tbody tr:nth-of-type(even) {
+      background-color: #161b22;
+    }
+    .vt-summary-box {
+      display: flex;
+      justify-content: space-between;
+      background-color: #1e2a38;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-left: 5px solid #e74c3c;
+      box-shadow: 0 0 8px rgba(231, 76, 60, 0.4);
+    }
+    .summary-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 120px;
+    }
+    .circle-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 6px solid #e74c3c;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .circle-number {
+      font-size: 22px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+    .circle-total {
+      font-size: 14px;
+      color: #bbb;
+    }
+    .community-score {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #f39c12;
+    }
+    .summary-right {
+      flex-grow: 1;
+      padding-left: 30px;
+    }
+    .vt-alert {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ff5e5e;
+      margin-bottom: 10px;
+    }
+    .vt-details p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+    .card-dark {
+      background-color: #161b22;
+      color: #c9d1d9;
+      border: 1px solid #30363d;
+    }
+    .card-header-dark {
+      background-color: #21262d;
+      color: #ffffff;
+    }
+    pre {
+      white-space: pre-wrap;
+      color: #c9d1d9;
+    }
   </style>
 </head>
 <body>
   <div class="container py-5">
     <h1 class="text-center mb-4">🛡 Cyber Threat Intelligence Dashboard</h1>
 
-    <div class="form-section mb-5">
+    <div class="text-end mb-3">
+      <a href="/export/pdf" class="btn btn-danger">⬇️ Export as PDF</a>
+    </div>
+
+    <!-- IOC Form -->
+    <div class="form-section mb-4">
       <form method="POST">
         <div class="row g-3 align-items-center">
           <div class="col-md-5">
-            <input type="text" name="ioc" class="form-control" placeholder="Enter IP, Domain, or Hash" required>
+            <input type="text" name="ioc" class="form-control" placeholder="Enter IP or Domain" required>
           </div>
           <div class="col-md-3">
             <input type="text" name="tag" class="form-control" placeholder="Tag (e.g. phishing, malware)">
@@ -117,18 +168,127 @@
           <div class="col-md-2">
             <button type="submit" class="btn btn-primary w-100">Lookup</button>
           </div>
+          <div class="col-md-2">
+            <a href="/map" class="btn btn-secondary w-100">🌍 View IP Map</a>
+          </div>
         </div>
       </form>
     </div>
 
-    <h2>📈 Threat Level Trends</h2>
-    <canvas id="threatChart" height="100"></canvas>
+    {% if result and result.summary is defined %}
+    <div class="vt-summary-box">
+      <div class="summary-left">
+        <div class="circle-box">
+          <div class="circle-number">{{ result.summary.vendor_count }}</div>
+          <div class="circle-total">/ {{ result.summary.total_vendors }}</div>
+        </div>
+        <div class="community-score">
+          Community Score: <span class="score">{{ result.summary.community_score }}</span>
+        </div>
+      </div>
+      <div class="summary-right">
+        <div class="vt-alert">
+          🚨 <strong>{{ result.summary.vendor_count }}/{{ result.summary.total_vendors }}</strong> vendors flagged this IP
+        </div>
+        <div class="vt-details">
+          <p><strong>IP:</strong> {{ result.ioc }}</p>
+          <p><strong>Registrar/ASN:</strong> {{ result.summary.asn or 'N/A' }}</p>
+          <p><strong>Country:</strong> {{ result.summary.country or 'N/A' }}</p>
+          <p><strong>Last Analysis:</strong> {{ result.summary.last_analysis_date }}</p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
 
-   
+   <!-- Dual Section: Threat Trend + Stats -->
+<div class="row mt-5">
+  <!-- Left: Threat Chart -->
+  <div class="col-md-6">
+    <h2>📈 Threat Level Trends</h2>
+    <canvas id="threatChart" height="180"></canvas>
+  </div>
+
+  <!-- Right: Summary Cards -->
+  <div class="col-md-6">
+    <h2>📊 Threat Summary</h2>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card bg-dark text-white text-center p-3">
+          <div class="h6">Total Lookups</div>
+          <div class="h4">{{ total_lookups }}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card bg-dark text-white text-center p-3">
+          <div class="h6">Total Reports</div>
+          <div class="h4">{{ total_reports }}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card bg-dark text-white text-center p-3">
+          <div class="h6">Malicious Detections</div>
+          <div class="h4">{{ total_malicious }}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card bg-dark text-white text-center p-3">
+          <div class="h6">Countries Affected</div>
+          <div class="h4">{{ total_countries }}</div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card bg-dark text-white text-center p-3">
+          <div class="h6">Unique IOCs</div>
+          <div class="h4">{{ unique_iocs }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    {% if result and result.summary is defined %}
+    <div class="card card-dark mt-4">
+      <div class="card-header card-header-dark">
+        <h4>🛠 Basic Properties</h4>
+      </div>
+      <div class="card-body">
+        <p><strong>Network:</strong> {{ result.summary.network or 'N/A' }}</p>
+        <p><strong>ASN:</strong> {{ result.summary.asn or 'N/A' }}</p>
+        <p><strong>Autonomous System:</strong> {{ result.summary.as_owner or 'N/A' }}</p>
+        <p><strong>Country:</strong> {{ result.summary.country or 'N/A' }}</p>
+        <p><strong>Continent:</strong> {{ result.summary.continent or 'N/A' }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if result and result.summary is defined and result.summary.whois %}
+    <div class="card card-dark mt-4">
+      <div class="card-header card-header-dark">
+        <h4>📜 Whois Lookup</h4>
+      </div>
+      <div class="card-body">
+        <pre>{{ result.summary.whois }}</pre>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Top 10 Active Entities - Below Whois -->
+<div class="card card-dark mt-4">
+  <div class="card-header card-header-dark">
+    <h4>🔥 Top 10 Active Entities</h4>
+  </div>
+  <div class="card-body">
+    <canvas id="entityChart" height="100"></canvas>
+  </div>
+</div>
+
+
     <h2 class="mt-5">🔍 Recent Lookups</h2>
     <div class="table-responsive">
-      <table class="table table-striped table-hover align-middle">
-        <thead>
+      <table class="table table-striped table-hover table-bordered align-middle mt-3 shadow-sm">
+        <thead class="table-dark">
           <tr>
             <th>Timestamp</th>
             <th>IOC</th>
@@ -141,16 +301,16 @@
           <tr>
             <td>{{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
             <td><code>{{ entry.ioc }}</code></td>
-            <td><span class="badge bg-tag">{{ entry.tag }}</span></td>
+            <td><span class="badge bg-secondary">{{ entry.tag }}</span></td>
             <td>
               {% if entry.threat_level_numeric == 3 %}
-                <span class="badge bg-high">High</span>
+                <span class="badge bg-danger">High</span>
               {% elif entry.threat_level_numeric == 2 %}
-                <span class="badge bg-medium">Medium</span>
+                <span class="badge bg-warning text-dark">Medium</span>
               {% elif entry.threat_level_numeric == 1 %}
-                <span class="badge bg-low">Low</span>
+                <span class="badge bg-info text-dark">Low</span>
               {% else %}
-                <span class="badge bg-none">None</span>
+                <span class="badge bg-light text-dark">None</span>
               {% endif %}
             </td>
           </tr>
@@ -158,16 +318,9 @@
         </tbody>
       </table>
     </div>
-
- 
-    {% if result %}
-      <h2 class="mt-5">📋 Lookup Result for <code>{{ result.ioc }}</code></h2>
-      <div class="form-section mt-3">
-        <pre>{{ result | tojson(indent=2) }}</pre>
-      </div>
-    {% endif %}
   </div>
 
+  <!-- Chart.js Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const ctx = document.getElementById('threatChart').getContext('2d');
@@ -201,182 +354,25 @@
         }
       }
     });
-  </script>
-</body>
-</html> -->
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Cyber Threat Intelligence Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    body {
-      background-color: #0e1117;
-      color: #c9d1d9;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    h1, h2 {
-      font-weight: 600;
-      color: #ffffff;
-    }
-    .form-section {
-      background-color: #161b22;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .form-control {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      border: 1px solid #30363d;
-    }
-    .form-control::placeholder {
-      color: #8b949e;
-    }
-    .btn-primary {
-      background-color: #238636;
-      border-color: #2ea043;
-    }
-    .table {
-      color: #c9d1d9;
-      background-color: #161b22;
-      border-collapse: collapse;
-    }
-    .table th {
-      background-color: #21262d;
-      color: #ffffff;
-    }
-    .table-bordered th, .table-bordered td {
-      border: 1px solid #30363d;
-    }
-    .badge.bg-light {
-      background-color: #30363d !important;
-      color: #e6edf3 !important;
-    }
-    .badge-danger { background-color: #da3633; }
-    .badge-warning { background-color: #e3b341; color: #0e1117; }
-    .badge-success { background-color: #2ea043; }
-    code {
-      background-color: #21262d;
-      color: #f0f6fc;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-    .table-striped tbody tr:nth-of-type(odd) { background-color: #0e1117; }
-    .table-striped tbody tr:nth-of-type(even) { background-color: #161b22; }
-  </style>
-</head>
-<body>
-  <div class="container py-5">
-    <h1 class="text-center mb-4">🛡 Cyber Threat Intelligence Dashboard</h1>
-
-    <!-- Form -->
-    <div class="form-section mb-4">
-      <form method="POST">
-        <div class="row g-3 align-items-center">
-          <div class="col-md-5">
-            <input type="text" name="ioc" class="form-control" placeholder="Enter IP, Domain, or Hash" required>
-          </div>
-          <div class="col-md-3">
-            <input type="text" name="tag" class="form-control" placeholder="Tag (e.g. phishing, malware)">
-          </div>
-          <div class="col-md-2">
-            <button type="submit" class="btn btn-primary w-100">Lookup</button>
-          </div>
-          <div class="col-md-2">
-            <a href="/map" class="btn btn-secondary w-100">🌍 View IP Map</a>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <!-- Chart -->
-    <h2>📈 Threat Level Trends</h2>
-    <canvas id="threatChart" height="100"></canvas>
-
-    <!-- Recent Lookups -->
-    <h2 class="mt-5">🔍 Recent Lookups</h2>
-    <div class="table-responsive">
-      <table class="table table-striped table-hover table-bordered align-middle mt-3 shadow-sm">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">Timestamp</th>
-            <th scope="col">IOC</th>
-            <th scope="col">Tag</th>
-            <th scope="col">Threat Level</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for entry in history %}
-          <tr>
-            <td>{{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-            <td><code>{{ entry.ioc }}</code></td>
-            <td><span class="badge bg-secondary">{{ entry.tag }}</span></td>
-            <td>
-              {% if entry.threat_level_numeric == 3 %}
-                <span class="badge bg-danger">High</span>
-              {% elif entry.threat_level_numeric == 2 %}
-                <span class="badge bg-warning text-dark">Medium</span>
-              {% elif entry.threat_level_numeric == 1 %}
-                <span class="badge bg-info text-dark">Low</span>
-              {% else %}
-                <span class="badge bg-light text-dark">None</span>
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Lookup Result -->
-    {% if result %}
-  <h2 class="mt-5">📋 Lookup Result for <code>{{ result.ioc }}</code></h2>
-  <div class="form-section mt-3">
-    <pre>{{ result | tojson(indent=2) }}</pre>
-    {% if result.ioc %}
-      <a href="/map_single?ip={{ result.ioc }}" target="_blank" class="btn btn-outline-light mt-3">
-      <a href="/map/{{ result.ioc }}" class="btn btn-outline-info mt-2">🌍 View on Map</a>
-        {% endif %}
-        🌍 View Geolocation on Map
-      </a>
-    {% endif %}
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const ctx = document.getElementById('threatChart').getContext('2d');
-    const threatChart = new Chart(ctx, {
-      type: 'line',
+    const entityCtx = document.getElementById('entityChart').getContext('2d');
+    const entityChart = new Chart(entityCtx, {
+      type: 'bar',
       data: {
-        labels: {{ labels | tojson }},
+        labels: {{ top_entity_labels | tojson }},
         datasets: [{
-          label: 'Avg Threat Level',
-          data: {{ values | tojson }},
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgb(255, 99, 132)',
-          borderWidth: 2,
-          tension: 0.3,
-          fill: true,
-          pointRadius: 5
+          label: 'Lookup Frequency',
+          data: {{ top_entity_counts | tojson }},
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgb(54, 162, 235)',
+          borderWidth: 1
         }]
       },
       options: {
+        indexAxis: 'y',
         scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              stepSize: 1,
-              callback: function(value) {
-                const map = {0: 'None', 1: 'Low', 2: 'Medium', 3: 'High'};
-                return map[value] || value;
-              }
-            }
+          x: {
+            beginAtZero: true
           }
         }
       }
